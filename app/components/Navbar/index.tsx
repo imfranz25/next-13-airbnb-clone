@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 
 import Container from '../UI/Container';
 import Logo from './Logo';
