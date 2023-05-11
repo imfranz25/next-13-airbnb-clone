@@ -15,7 +15,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={font.className}>
-        <Modal isOpen title="Login" />
+        <Modal
+          isOpen
+          title="Login"
+          actionLabel="Submit"
+          onClose={() => {
+            /*  */
+          }}
+          onSubmit={() => {
+            /*  */
+          }}
+        />
         <Navbar />
         {children}
       </body>
