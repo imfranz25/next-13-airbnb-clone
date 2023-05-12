@@ -3,13 +3,14 @@
 import axios from 'axios';
 import { useState, useCallback } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 
 import Modal from './index';
-import { AiFillGithub } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
 import Heading from '../UI/Heading';
 import Input from '../UI/Input';
+import { AiFillGithub } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -35,7 +36,7 @@ const RegisterModal = () => {
         await axios.post('/api/register', data);
         registerModal.onClose();
       } catch (error) {
-        console.log(error);
+        toast.error('Something went wrong');
       } finally {
         setIsLoading(false);
       }
