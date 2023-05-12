@@ -100,6 +100,7 @@ const Modal: React.FC<ModalProps> = ({
           {/* Content */}
           <div
             className={`
+              mt-20
               translate
               duration-300
               h-full
@@ -145,7 +146,7 @@ const Modal: React.FC<ModalProps> = ({
                     hover:opacity-70
                     transition
                     absolute
-                    left-9
+                    right-9
                   "
                 >
                   <IoMdClose size={18} />
@@ -175,6 +176,7 @@ const Modal: React.FC<ModalProps> = ({
                   )}
                   <Button disabled={disabled} label={actionLabel} onClick={handleSubmit} />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
