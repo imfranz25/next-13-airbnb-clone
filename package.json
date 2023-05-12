@@ -29,7 +29,8 @@
   },
   "devDependencies": {
     "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "prisma": "^4.14.0"
   },
   "config": {
     "commitizen": {
