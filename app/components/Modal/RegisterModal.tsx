@@ -9,6 +9,7 @@ import Modal from './index';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import Heading from '../UI/Heading';
+import Input from '../UI/Input';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -46,6 +47,31 @@ const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to Stacify" subTitle="Create an account" />
+      <Input
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="name"
+        label="Name"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="password"
+        type="password"
+        label="Password"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
     </div>
   );
 
