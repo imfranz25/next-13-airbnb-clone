@@ -4,6 +4,7 @@ import { Nunito } from 'next/font/google';
 import Navbar from './components/Navbar';
 import RegisterModal from './components/Modal/RegisterModal';
 import ToastProvider from './providers/ToastProvider';
+import LoginModal from './components/Modal/LoginModal';
 
 const font = Nunito({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={font.className}>
         <ToastProvider />
+        <LoginModal />
         <RegisterModal />
         <Navbar />
         {children}
