@@ -8,6 +8,7 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import Modal from './index';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
+import Heading from '../UI/Heading';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -42,6 +43,12 @@ const RegisterModal = () => {
     [registerModal]
   );
 
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Heading title="Welcome to Stacify" subTitle="Create an account" />
+    </div>
+  );
+
   return (
     <Modal
       disabled={isLoading}
@@ -50,6 +57,7 @@ const RegisterModal = () => {
       title="Register"
       actionLabel="Continue"
       onSubmit={handleSubmit(onSubmit)}
+      body={bodyContent}
     />
   );
 };
