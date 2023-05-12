@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// pnpm prisma db push (push shcemaa to database)
+
 generator client {
   provider = "prisma-client-js"
 }
