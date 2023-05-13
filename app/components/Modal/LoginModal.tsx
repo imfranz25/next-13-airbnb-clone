@@ -1,6 +1,5 @@
 'use client';
 
-import axios from 'axios';
 import { signIn } from 'next-auth/react';
 import { useState, useCallback } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -94,6 +93,7 @@ const LoginModal = () => {
       <hr />
       <Button
         outline
+        disabled={isLoading}
         icon={FcGoogle}
         label="Login with Google"
         onClick={() => {
@@ -102,11 +102,10 @@ const LoginModal = () => {
       />
       <Button
         outline
+        disabled={isLoading}
         icon={AiFillGithub}
         label="Login with Github"
-        onClick={() => {
-          /*  */
-        }}
+        onClick={() => signIn('github')}
       />
       <div
         className="
