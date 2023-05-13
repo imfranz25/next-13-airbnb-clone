@@ -1,6 +1,7 @@
 'use client';
 
 import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import { useState, useCallback } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -10,11 +11,13 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import Modal from './index';
 import Heading from '../UI/Heading';
 import Input from '../UI/Input';
+import Button from '../UI/Button';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import Button from '../UI/Button';
+import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
+  const router = useRouter();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -40,20 +43,32 @@ const LoginModal = () => {
       setIsLoading(true);
 
       try {
-        await axios.post('/api/login', data);
-        loginModal.onClose();
+        const response = await signIn('credentials', {
+          ...data,
+          redirect: false,
+        });
+
+        if (response?.ok) {
+          toast.success('Log in success');
+          router.refresh();
+          loginModal.onClose();
+        }
+
+        if (response?.error) {
+          toast.error('Invalid email or password');
+        }
       } catch (error) {
         toast.error('Something went wrong');
       } finally {
         setIsLoading(false);
       }
     },
-    [loginModal]
+    [router, loginModal]
   );
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to Staycify" subTitle="Log in" center />
+      <Heading title="Welcome back!" subTitle="Log in to your account" center />
       <Input
         id="email"
         label="Email"
