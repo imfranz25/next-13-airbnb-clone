@@ -23,6 +23,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     setOpen((value) => !value);
   }, []);
 
+  const handleOpenLoginModal = () => {
+    loginModal.onOpen();
+    setOpen(false);
+  };
+
+  const handleOpenRegisterModal = () => {
+    registerModal.onOpen();
+    setOpen(false);
+  };
+
   return (
     <div className="relative ">
       <div className="flex flex-row items-center gap-3">
@@ -95,8 +105,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </>
             ) : (
               <>
-                <MenuItem onClick={loginModal.onOpen} label="Login" />
-                <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+                <MenuItem onClick={handleOpenLoginModal} label="Login" />
+                <MenuItem onClick={handleOpenRegisterModal} label="Sign up" />
               </>
             )}
           </div>
