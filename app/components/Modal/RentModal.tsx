@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { RENT_STEPS } from '@/constants/rent-modal-steps';
 import { CATEGORIES } from '@/constants/categories';
+import { useForm, FieldValues } from 'react-hook-form';
 import useRentModal from '@/app/hooks/useRentModal';
 
 import Modal from './index';
@@ -12,6 +13,39 @@ import CategoryInput from '../UI/Input/CategoryInput';
 const RentModal = () => {
   const rentModal = useRentModal();
   const [step, setStep] = useState(RENT_STEPS.CATEGORY);
+
+  const {
+    register,
+    reset,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: {
+      category: '',
+      title: '',
+      imageSrc: '',
+      description: '',
+      roomCount: 1,
+      guestCount: 1,
+      bathroomCount: 1,
+      price: 1,
+      location: null,
+    },
+  });
+
+  const category = watch('category');
+  const setCustomValue = useCallback(
+    (id: string, value: any) => {
+      setValue(id, value, {
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+    },
+    [setValue]
+  );
 
   const onPrev = useCallback(() => {
     setStep((value) => value - 1);
@@ -51,15 +85,13 @@ const RentModal = () => {
           overflow-y-auto
         "
       >
-        {CATEGORIES.map((category) => (
-          <div key={category.id} className="col-span-1">
+        {CATEGORIES.map((item) => (
+          <div key={item.id} className="col-span-1">
             <CategoryInput
-              selected={false}
-              label={category.label}
-              icon={category.icon}
-              onClick={() => {
-                /*  */
-              }}
+              icon={item.icon}
+              label={item.label}
+              selected={category === item.label}
+              onClick={(categoryLabel) => setCustomValue('category', categoryLabel)}
             />
           </div>
         ))}
