@@ -5,12 +5,11 @@ import queryString from 'query-string';
 
 interface CategoryBoxProps {
   label: string;
-  description: string;
   icon: IconType;
   selected?: boolean;
 }
 
-const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, description, selected }) => {
+const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, selected }) => {
   const router = useRouter();
   const params = useSearchParams();
 
