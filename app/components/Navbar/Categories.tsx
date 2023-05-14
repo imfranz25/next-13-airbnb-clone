@@ -7,16 +7,7 @@ import { CATEGORIES } from '@/constants/catergories';
 const Categories = () => {
   return (
     <Container>
-      <div
-        className="
-          pt-4
-          flex
-          flex-row
-          items-center
-          justify-between
-          overflow-x-auto
-        "
-      >
+      <div className="flex flex-row items-center justify-between pt-4 overflow-x-auto ">
         {CATEGORIES.map((category) => (
           <CategoryBox
             key={category.id}
