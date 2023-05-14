@@ -3,7 +3,7 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 import CategoryBox from '../CategoryBox';
 import Container from '../UI/Container';
-import { CATEGORIES } from '@/constants/catergories';
+import { CATEGORIES } from '@/constants/categories';
 
 const Categories = () => {
   const params = useSearchParams();
