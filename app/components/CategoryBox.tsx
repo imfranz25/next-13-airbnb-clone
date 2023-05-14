@@ -1,3 +1,5 @@
+'use client';
+
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { IconType } from 'react-icons';
