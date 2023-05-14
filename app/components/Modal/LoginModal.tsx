@@ -32,10 +32,10 @@ const LoginModal = () => {
     },
   });
 
-  const openRegisterModal = () => {
+  const openRegisterModal = useCallback(() => {
     loginModal.onClose();
     registerModal.onOpen();
-  };
+  }, [loginModal, registerModal]);
 
   const onSubmit: SubmitHandler<FieldValues> = useCallback(
     async (data) => {
@@ -105,18 +105,11 @@ const LoginModal = () => {
         label="Login with Github"
         onClick={() => signIn('github')}
       />
-      <div
-        className="
-          text-neutral-500
-          text-center
-          mt-4
-          font-light
-        "
-      >
-        <div className="flex flex-row items-center gap-2 justify-center">
+      <div className="mt-4 font-light text-center text-neutral-500">
+        <div className="flex flex-row items-center justify-center gap-2">
           <div>Don&apos;t have an account?</div>
           <div
-            className="text-neutral-500 cursor-pointer hover:underline"
+            className="cursor-pointer text-neutral-500 hover:underline"
             onClick={openRegisterModal}
           >
             Sign up
