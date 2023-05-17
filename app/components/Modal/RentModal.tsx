@@ -39,6 +39,8 @@ const RentModal = () => {
   });
 
   const category = watch('category');
+  const location = watch('location');
+
   const setCustomValue = useCallback(
     (id: string, value: any) => {
       setValue(id, value, {
@@ -131,7 +133,10 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading title="Where is your place located?" subTitle="Help guests find you!" center />
-        <CountrySelect />
+        <CountrySelect
+          value={location}
+          onChange={(location) => setCustomValue('location', location)}
+        />
       </div>
     );
   }
