@@ -1,6 +1,7 @@
 'use client';
 
 import toast from 'react-hot-toast';
+import dynamic from 'next/dynamic';
 import { useCallback, useMemo, useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import { RENT_STEPS } from '@/constants/rent-modal-steps';
@@ -11,8 +12,9 @@ import Modal from './index';
 import Heading from '../UI/Heading';
 import CategoryInput from '../UI/Input/CategoryInput';
 import CountrySelect from '../UI/Input/CountrySelect';
-import dynamic from 'next/dynamic';
 import Counter from '../UI/Input/Counter';
+import ImageUpload from '../UI/Input/ImageUpload';
+
 const RentModal = () => {
   const [isLoading, setLoading] = useState(false);
   const rentModal = useRentModal();
@@ -44,6 +46,7 @@ const RentModal = () => {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
 
   const Map = useMemo(
     () =>
@@ -189,7 +192,16 @@ const RentModal = () => {
   }
 
   if (step === RENT_STEPS.IMAGES) {
-    bodyContent = <div>Images Step</div>;
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Add a photo of your place"
+          subTitle="Show your guest what your place looks like!"
+          center
+        />
+        <ImageUpload value={imageSrc} onChange={(value) => setCustomValue('imageSrc', value)} />
+      </div>
+    );
   }
 
   if (step === RENT_STEPS.DESCRIPTION) {
