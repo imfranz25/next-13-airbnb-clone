@@ -14,6 +14,7 @@ import CategoryInput from '../UI/Input/CategoryInput';
 import CountrySelect from '../UI/Input/CountrySelect';
 import Counter from '../UI/Input/Counter';
 import ImageUpload from '../UI/Input/ImageUpload';
+import Input from '../UI/Input';
 
 const RentModal = () => {
   const [isLoading, setLoading] = useState(false);
@@ -205,7 +206,32 @@ const RentModal = () => {
   }
 
   if (step === RENT_STEPS.DESCRIPTION) {
-    bodyContent = <div>Description Step</div>;
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="How would you describe your place?"
+          subTitle="Show and sweet works best!"
+          center
+        />
+        <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
   }
 
   if (step === RENT_STEPS.PRICE) {
