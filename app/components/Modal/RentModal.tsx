@@ -114,7 +114,7 @@ const RentModal = () => {
       reset();
       setStep(RENT_STEPS.CATEGORY);
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error('Please specify all the information needed');
     } finally {
       setLoading(false);
     }
@@ -264,6 +264,7 @@ const RentModal = () => {
       secondaryAction={step === RENT_STEPS.CATEGORY ? undefined : onPrev}
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}
+      disabled={isLoading}
     />
   );
 };
