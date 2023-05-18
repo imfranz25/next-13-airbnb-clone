@@ -2,6 +2,8 @@
 
 import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import { RENT_STEPS } from '@/constants/rent-modal-steps';
@@ -17,6 +19,7 @@ import ImageUpload from '../UI/Input/ImageUpload';
 import Input from '../UI/Input';
 
 const RentModal = () => {
+  const router = useRouter();
   const [isLoading, setLoading] = useState(false);
   const rentModal = useRentModal();
   const [step, setStep] = useState(RENT_STEPS.CATEGORY);
@@ -93,30 +96,29 @@ const RentModal = () => {
     return 'Back';
   }, [step]);
 
-  const onSubmit: SubmitHandler<FieldValues> = useCallback(
-    async (data) => {
-      setLoading(true);
-      console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (step !== RENT_STEPS.PRICE) {
+      return onNext();
+    }
 
-      try {
-        const response = await fetch('submit rent');
+    setLoading(true);
+    console.log(data);
 
-        if (response?.ok) {
-          toast.success('Log in success');
-          rentModal.onClose();
-        }
+    try {
+      const response = await axios.post('/api/listings', data);
 
-        // if (response?.error) {
-        //   toast.error('Invalid email or password');
-        // }
-      } catch (error) {
-        toast.error('Something went wrong');
-      } finally {
-        setLoading(false);
-      }
-    },
-    [rentModal]
-  );
+      toast.success('Log in success');
+      router.refresh();
+      rentModal.onClose();
+
+      reset();
+      setStep(RENT_STEPS.CATEGORY);
+    } catch (error) {
+      toast.error('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   /* Rent Modal Contents */
   let bodyContent = (
@@ -235,7 +237,21 @@ const RentModal = () => {
   }
 
   if (step === RENT_STEPS.PRICE) {
-    bodyContent = <div>Price Step</div>;
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Now, set your price" subTitle="How much doo you charge per night?" center />
+        <Input
+          id="price"
+          label="Price"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          type="number"
+          required
+          formatPrice
+        />
+      </div>
+    );
   }
 
   return (
@@ -244,7 +260,7 @@ const RentModal = () => {
       actionLabel={actionLabel}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={step === RENT_STEPS.PRICE ? handleSubmit(onSubmit) : onNext}
+      onSubmit={handleSubmit(onSubmit)}
       secondaryAction={step === RENT_STEPS.CATEGORY ? undefined : onPrev}
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}

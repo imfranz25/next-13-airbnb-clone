@@ -22,8 +22,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange }) => {
     [onChange]
   );
 
-  console.log(process.env.NEXT_PUBLIC_CLOUDINARY_PRESET);
-
   return (
     <CldUploadWidget
       onUpload={handleUpload}
