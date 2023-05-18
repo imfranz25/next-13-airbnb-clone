@@ -11,7 +11,7 @@ import Modal from './index';
 import Heading from '../UI/Heading';
 import CategoryInput from '../UI/Input/CategoryInput';
 import CountrySelect from '../UI/Input/CountrySelect';
-
+import dynamic from 'next/dynamic';
 const RentModal = () => {
   const [isLoading, setLoading] = useState(false);
   const rentModal = useRentModal();
@@ -40,6 +40,14 @@ const RentModal = () => {
 
   const category = watch('category');
   const location = watch('location');
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('../Map'), {
+        ssr: false,
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [location]
+  );
 
   const setCustomValue = useCallback(
     (id: string, value: any) => {
@@ -137,6 +145,7 @@ const RentModal = () => {
           value={location}
           onChange={(location) => setCustomValue('location', location)}
         />
+        <Map center={location?.latlng} />
       </div>
     );
   }
