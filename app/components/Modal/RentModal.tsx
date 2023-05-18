@@ -12,6 +12,7 @@ import Heading from '../UI/Heading';
 import CategoryInput from '../UI/Input/CategoryInput';
 import CountrySelect from '../UI/Input/CountrySelect';
 import dynamic from 'next/dynamic';
+import Counter from '../UI/Input/Counter';
 const RentModal = () => {
   const [isLoading, setLoading] = useState(false);
   const rentModal = useRentModal();
@@ -40,6 +41,10 @@ const RentModal = () => {
 
   const category = watch('category');
   const location = watch('location');
+  const guestCount = watch('guestCount');
+  const roomCount = watch('roomCount');
+  const bathroomCount = watch('bathroomCount');
+
   const Map = useMemo(
     () =>
       dynamic(() => import('../Map'), {
@@ -151,7 +156,36 @@ const RentModal = () => {
   }
 
   if (step === RENT_STEPS.INFO) {
-    bodyContent = <div>Info Step</div>;
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Share some basic info abut your place!"
+          subTitle="What amenities do you have?"
+          center
+        />
+        <Counter
+          title="Guest"
+          subtitle="How many guest do you allow?"
+          value={guestCount}
+          onChange={(value) => setCustomValue('guestCount', value)}
+        />
+        <hr />
+        <Counter
+          title="Rooms"
+          subtitle="How many rooms do you have?"
+          value={roomCount}
+          onChange={(value) => setCustomValue('roomCount', value)}
+        />
+
+        <hr />
+        <Counter
+          title="Bathroom"
+          subtitle="How many guest do you allow?"
+          value={bathroomCount}
+          onChange={(value) => setCustomValue('bathroomCount', value)}
+        />
+      </div>
+    );
   }
 
   if (step === RENT_STEPS.IMAGES) {
