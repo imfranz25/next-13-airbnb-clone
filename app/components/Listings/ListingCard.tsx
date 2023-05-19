@@ -5,8 +5,10 @@ import { format } from 'date-fns';
 import { SafeUser } from '@/app/types';
 import { Listing, Reservation } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import useCountries from '@/app/hooks/useCountries';
+
+import HeartButton from '../HeartButton';
+import Image from 'next/image';
 
 interface ListingCardProps {
   data: Listing;
@@ -77,7 +79,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
             src={data.imageSrc}
             className="object-cover w-full h-full transition group-hover:scale-110"
           />
-          <div className="absolute top-3 right-3"></div>
+          <div className="absolute top-3 right-3">
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
         </div>
       </div>
     </div>
