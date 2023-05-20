@@ -1,5 +1,5 @@
-import { getListingById } from '@/app/helpers/getListingById';
-import { getCurrentUser } from '@/app/helpers/getCurrentUser';
+import getListingById from '@/app/helpers/getListingById';
+import getCurrentUser from '@/app/helpers/getCurrentUser';
 import getReservations from '../../helpers/getReservations';
 
 import EmptyState from '@/app/components/EmptyState';

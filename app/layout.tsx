@@ -1,6 +1,6 @@
 import './globals.css';
 import { Nunito } from 'next/font/google';
-import { getCurrentUser } from './helpers/getCurrentUser';
+import getCurrentUser from './helpers/getCurrentUser';
 
 import ToastProvider from './providers/ToastProvider';
 import Navbar from './components/Navbar';

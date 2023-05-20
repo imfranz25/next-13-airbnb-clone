@@ -1,5 +1,5 @@
 import { getListings } from './helpers/getListings';
-import { getCurrentUser } from './helpers/getCurrentUser';
+import getCurrentUser from './helpers/getCurrentUser';
 
 import Container from './components/UI/Container';
 import EmptyState from './components/EmptyState';
