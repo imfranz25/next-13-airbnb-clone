@@ -89,9 +89,9 @@ export const CATEGORIES = [
   },
   {
     id: 'category-013',
-    label: 'Dessert',
+    label: 'Desert',
     icon: GiCactus,
-    description: 'This property is in the dessert!',
+    description: 'This property is in the desert!',
   },
   {
     id: 'category-014',

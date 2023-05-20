@@ -11,8 +11,9 @@ import { Reservation } from '@prisma/client';
 import Container from '@/app/components/UI/Container';
 import ListingHead from '@/app/components/Listings/ListingHead';
 import ListingInfo from '@/app/components/Listings/ListingInfo';
-import { CATEGORIES } from '../../../constants/categories';
+import ListingReservation from '@/app/components/Listings/ListingReservation';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import { CATEGORIES } from '../../../constants/categories';
 
 const initialDateRange = {
   startDate: new Date(),
@@ -74,7 +75,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     router,
   ]);
 
-  const disabledDate = useMemo(() => {
+  const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
     reservations.forEach((reservation) => {
@@ -126,6 +127,17 @@ const ListingClient: React.FC<ListingClientProps> = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+            <div className="order-first mb-10 md:order-last md:col-span-3">
+              <ListingReservation
+                price={listing.price}
+                totalPrice={totalPrice}
+                onChangeDate={(value: any) => setDateRange(value)}
+                dateRange={dateRange}
+                onSubmit={onCreateReservation}
+                disabled={isLoading}
+                disabledDates={disabledDates}
+              />
+            </div>
           </div>
         </div>
       </div>
