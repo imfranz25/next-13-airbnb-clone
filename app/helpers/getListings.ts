@@ -15,6 +15,7 @@ export async function getListings() {
 
     return safeListings;
   } catch (error) {
+    console.log(error);
     throw new Error('Something went wrong');
   }
 }
