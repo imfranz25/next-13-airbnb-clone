@@ -35,14 +35,14 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
         let toggleMessage;
 
         if (hasFavorited) {
-          request = axios.delete(`/api/favorite/${listingId}`);
-          toggleMessage = 'Added to favorites';
-        } else {
-          request = axios.post(`/api/favorite/${listingId}`);
+          request = () => axios.delete(`/api/favorites/${listingId}`);
           toggleMessage = 'Removed from favorites';
+        } else {
+          request = () => axios.post(`/api/favorites/${listingId}`);
+          toggleMessage = 'Added to favorites';
         }
 
-        await request;
+        await request();
         router.refresh();
         toast.success(toggleMessage);
       } catch (error) {

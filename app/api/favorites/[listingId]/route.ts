@@ -48,8 +48,8 @@ export async function DELETE(request: Request, { params }: { params: IParams }) 
     throw new Error('Invalid Listing ID');
   }
 
-  const favoriteIds = [...(currentUser.favoriteIds || [])];
-  favoriteIds.filter((id) => id !== listingId);
+  let favoriteIds = [...(currentUser.favoriteIds || [])];
+  favoriteIds = favoriteIds.filter((id) => id !== listingId);
 
   const user = await prisma.user.update({
     where: {
