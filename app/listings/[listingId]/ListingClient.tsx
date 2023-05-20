@@ -6,8 +6,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Range } from 'react-date-range';
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import { SafeListing, SafeUser } from '@/app/types';
-import { Reservation } from '@prisma/client';
+import { SafeListing, SafeUser, SafeReservation } from '@/app/types';
 
 import Container from '@/app/components/UI/Container';
 import ListingHead from '@/app/components/Listings/ListingHead';
@@ -27,7 +26,7 @@ interface ListingClientProps {
     user: SafeUser;
   };
   currentUser?: SafeUser | null;
-  reservations?: Reservation[];
+  reservations?: SafeReservation[];
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({
