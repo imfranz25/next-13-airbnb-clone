@@ -3,6 +3,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Range } from 'react-date-range';
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import { SafeListing, SafeUser } from '@/app/types';
@@ -38,7 +39,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const loginModal = useLoginModal();
   const [isLoading, setLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const onCreateReservation = useCallback(async () => {
     if (!currentUser) {
@@ -131,7 +132,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
               <ListingReservation
                 price={listing.price}
                 totalPrice={totalPrice}
-                onChangeDate={(value: any) => setDateRange(value)}
+                onChangeDate={(value) => setDateRange(value)}
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
