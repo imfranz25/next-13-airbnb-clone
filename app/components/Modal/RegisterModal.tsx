@@ -44,14 +44,17 @@ const RegisterModal = () => {
 
       try {
         await axios.post('/api/register', data);
+
+        toast.success('Sign up success');
         registerModal.onClose();
+        loginModal.onOpen();
       } catch (error) {
         toast.error('Something went wrong');
       } finally {
         setIsLoading(false);
       }
     },
-    [registerModal]
+    [registerModal, loginModal]
   );
 
   const bodyContent = (
@@ -100,9 +103,7 @@ const RegisterModal = () => {
         label="Continue with Github"
         onClick={() => signIn('github')}
       />
-      <div
-        className="mt-4 font-light text-center  text-neutral-500"
-      >
+      <div className="mt-4 font-light text-center text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
           <div>Already have an account?</div>
           <div className="cursor-pointer text-neutral-500 hover:underline" onClick={openLoginModal}>
