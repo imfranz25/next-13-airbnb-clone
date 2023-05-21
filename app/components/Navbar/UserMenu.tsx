@@ -46,8 +46,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     rentModal.onOpen();
   }, [loginModal, currentUser, rentModal]);
 
-  const openTripsPage = () => {
-    router.push('/trips');
+  const openNewPage = (route: string) => {
+    router.push(route);
     setOpen(false);
   };
 
@@ -104,10 +104,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={openTripsPage} label="My trips" />
-                <MenuItem onClick={() => {}} label="My favorites" />
-                <MenuItem onClick={() => {}} label="My reservations" />
-                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem onClick={() => openNewPage('/trips')} label="My trips" />
+                <MenuItem onClick={() => openNewPage('/favorites')} label="My favorites" />
+                <MenuItem onClick={() => openNewPage('/reservations')} label="My reservations" />
+                <MenuItem onClick={() => openNewPage('/properties')} label="My properties" />
                 <MenuItem onClick={rentModal.onOpen} label="Staycify your home" />
                 <hr />
                 <MenuItem onClick={signOut} label="Logout" />
