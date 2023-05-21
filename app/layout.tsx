@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import RegisterModal from './components/Modal/RegisterModal';
 import LoginModal from './components/Modal/LoginModal';
 import RentModal from './components/Modal/RentModal';
+import SearchModal from './components/Modal/SearchModal';
 
 const font = Nunito({ subsets: ['latin'] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <RentModal />
         <LoginModal />
         <RegisterModal />
+        <SearchModal />
         <Navbar currentUser={currentUser} />
         {children}
       </body>
