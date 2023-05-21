@@ -2,8 +2,7 @@
 
 import { useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
-import { SafeUser, SafeListing } from '@/app/types';
-import { Reservation } from '@prisma/client';
+import { SafeUser, SafeListing, SafeReservation } from '@/app/types';
 import { useRouter } from 'next/navigation';
 import useCountries from '@/app/hooks/useCountries';
 
@@ -13,7 +12,7 @@ import Button from '../UI/Button';
 
 interface ListingCardProps {
   data: SafeListing;
-  reservation?: Reservation;
+  reservation?: SafeReservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
@@ -88,7 +87,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           {location?.region} {location?.label}
         </div>
         <div className="font-light text-neutral-500">{reservationDate || data.category}</div>
-        <div className="flex flex-row items-center gap-1">
+        <div className="flex flex-row items-center gap-1 py-1">
           <div className="font-semibold ">$ {price}</div>
           {!reservation && <div className="font-light">Night</div>}
         </div>
