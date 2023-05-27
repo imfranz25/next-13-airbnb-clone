@@ -256,7 +256,7 @@ const RentModal = () => {
 
   return (
     <Modal
-      title="Staycify your home"
+      title="Airbnb your home"
       actionLabel={actionLabel}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}

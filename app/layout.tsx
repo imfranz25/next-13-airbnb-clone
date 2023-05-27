@@ -12,8 +12,8 @@ import SearchModal from './components/Modal/SearchModal';
 const font = Nunito({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Staycify ',
-  description: 'Staycify - Find the perfect place to stay at an amazing price in 200 countries.',
+  title: 'Airbnb ',
+  description: 'Airbnb - Find the perfect place to stay at an amazing price in 200 countries.',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
