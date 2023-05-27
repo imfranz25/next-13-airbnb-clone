@@ -5,3 +5,5 @@ const loading = () => {
 };
 
 export default loading;
+
+export const dynamic = 'force-dynamic';

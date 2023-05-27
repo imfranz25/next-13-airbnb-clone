@@ -16,3 +16,5 @@ const ErrorState: React.FC<ErrorStateProps> = ({ error }) => {
 };
 
 export default ErrorState;
+
+export const dynamic = 'force-dynamic';
