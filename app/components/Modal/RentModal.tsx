@@ -107,7 +107,7 @@ const RentModal = () => {
     try {
       const response = await axios.post('/api/listings', data);
 
-      toast.success('Log in success');
+      toast.success('Listing created');
       router.refresh();
       rentModal.onClose();
 
